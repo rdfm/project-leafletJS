@@ -29,36 +29,52 @@
     <div id="mapid"></div>
 
     <script>
-        var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+        // var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+        var mymap = L.map('mapid').setView([37.780862, -122.409170], 14.5);
+        
+        // L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        //     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        //     maxZoom: 18,
+        //     id: 'mapbox.streets',
+        //     accessToken: 'pk.eyJ1IjoicmF1bGZtIiwiYSI6ImNqdWN4d3RyMDBiZDM0ZHRjMWM3NjljcTEifQ.6rU-iNmRQbymN_s-CE2bWQ'
+        // }).addTo(mymap);
 
-        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 18,
-            id: 'mapbox.streets',
-            accessToken: 'pk.eyJ1IjoicmF1bGZtIiwiYSI6ImNqdWN4d3RyMDBiZDM0ZHRjMWM3NjljcTEifQ.6rU-iNmRQbymN_s-CE2bWQ'
+        L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
+            attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            subdomains: 'abcd',
+            minZoom: 0,
+            maxZoom: 20,
+            ext: 'png'
         }).addTo(mymap);
 
         // Add: Marker
-        var marker = L.marker([51.5, -0.09]).addTo(mymap);
+        var marker = L.marker([37.780862, -122.409170]).addTo(mymap);
+
+        var circleStyle = {
+            color: 'purple',
+            fillColor: '#f03',
+            fillOpacity: 0.25,
+            radius: 300
+        }
 
         // Add: Circle
-        var circle = L.circle([51.508, -0.11], {
-            color: 'red',
-            fillColor: '#f03',
-            fillOpacity: 0.5,
-            radius: 500
-        }).addTo(mymap);
+        var circle = L.circle([37.780862, -122.409170], circleStyle
+        ).addTo(mymap);
 
         // Add: Polygon
         var polygon = L.polygon([
-            [51.509, -0.08],
-            [51.503, -0.06],
-            [51.51, -0.047]
-        ]).addTo(mymap);
+            [37.789285, -122.401519],  // 2nd & Market
+            [37.781838, -122.392188],  // 2nd & Brannan
+            [37.769194, -122.408056],  // Division & Brannan
+            [37.769533, -122.410867],  // 11th & Brannan
+            [37.775555, -122.418753]   // 11th & Market
+        ], {
+            color: 'red',
+            weight: 4
+        }).addTo(mymap);
 
         // Working with pop ups
         marker.bindPopup("<b>Hello world!</b><br>I am a popup.");
-
             // To keep a pop open at load, use .openPopup();
             // marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
         circle.bindPopup("I am a circle.");
