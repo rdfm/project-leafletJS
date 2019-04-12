@@ -171,13 +171,41 @@ var geojson = {
   ]
 }
 
-L.geoJSON(geojson, {
+var addedGeoJSON = L.geoJSON(geojson, {
     style: function (feature) {
         return {
           color: '#FFFF00'
         }
     }
 }).addTo(mymap);
+
+// Bounds
+// mymap.fitBounds(addedGeoJSON.getBounds(), {
+//   padding: [20, 20]
+// });
+
+// FeatureGroup
+// var marker1 = L.marker();
+// var marker2 = L.marker();
+// var polygon = L.polygon();
+
+// var featureGroup = L.featureGroup([marker1, marker2, polygon]).addTo(mymap);
+
+// mymap.fitBounds(featureGroup.getBounds(), {
+//   padding: [20, 20]
+// });
+
+var featureGroup = L.featureGroup([marker, circle, polygon]).addTo(mymap);
+
+mymap.fitBounds(featureGroup.getBounds(), {
+    padding: [5, 5]
+});
+
+
+
+
+
+
     </script>
 </body>
 </html>
