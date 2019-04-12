@@ -17,6 +17,23 @@
     <!-- Local page styles -->
     <style type="text/css">
         #mapid { height: 500px; }
+
+        /* Pop up styles */
+        .leaflet-popup-content-wrapper {
+            border-radius: 0;
+            background: black;
+            color: white;
+            font-size: 2rem;
+        }
+        .leaflet-popup-content {
+            margin: 5px;
+        }
+        .leaflet-popup-tip {
+            background: black;
+        }
+        .leaflet-popup-close-button {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -47,8 +64,13 @@
             ext: 'png'
         }).addTo(mymap);
 
-        // Add: Marker
-        var marker = L.marker([37.780862, -122.409170]).addTo(mymap);
+        // Add: Marker + Popup
+
+        // Popup
+        var popup = L.popup().setContent('<p>Hello world!<br />Custom HTML.</p>');
+
+        // var marker = L.marker([37.780862, -122.409170]).addTo(mymap).bindPopup("<b>Hello world!</b><br>I am a popup.");
+        var marker = L.marker([37.780862, -122.409170]).addTo(mymap).bindPopup(popup);
 
         var circleStyle = {
             color: 'purple',
@@ -73,28 +95,30 @@
             weight: 4
         }).addTo(mymap);
 
+
         // Working with pop ups
-        marker.bindPopup("<b>Hello world!</b><br>I am a popup.");
+
+        // marker.bindPopup("<b>Hello world!</b><br>I am a popup.");
             // To keep a pop open at load, use .openPopup();
             // marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
         circle.bindPopup("I am a circle.");
         polygon.bindPopup("I am a polygon.");
 
         // Dealing with events (Click on map, outside of markers, etc.)
-        function onMapClick(e) {
-            alert("You clicked the map at " + e.latlng);
-        }
-        mymap.on('click', onMapClick);
+            // function onMapClick(e) {
+            //     alert("You clicked the map at " + e.latlng);
+            // }
+            // mymap.on('click', onMapClick);
 
-        // Using popup instead of an alert
-        var popup = L.popup();
-        function onMapClick(e) {
-            popup
-                .setLatLng(e.latlng)
-                .setContent("You clicked the map at " + e.latlng.toString())
-                .openOn(mymap);
-        }
-        mymap.on('click', onMapClick);
+            // Using popup instead of an alert
+            // var popup = L.popup();
+            // function onMapClick(e) {
+            //     popup
+            //         .setLatLng(e.latlng)
+            //         .setContent("You clicked the map at " + e.latlng.toString())
+            //         .openOn(mymap);
+            // }
+            // mymap.on('click', onMapClick);
     </script>
 </body>
 </html>
