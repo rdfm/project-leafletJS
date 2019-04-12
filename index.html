@@ -119,6 +119,65 @@
             //         .openOn(mymap);
             // }
             // mymap.on('click', onMapClick);
+
+
+
+// Add GeoJSON 
+var geojson = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.40707159042358,
+              37.77741426974396
+            ],
+            [
+              -122.405526638031,
+              37.776159213899724
+            ],
+            [
+              -122.40492582321167,
+              37.77660018189458
+            ],
+            [
+              -122.40647077560425,
+              37.77788915018273
+            ],
+            [
+              -122.40707159042358,
+              37.77741426974396
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.40638494491577,
+          37.777482109993414
+        ]
+      }
+    }
+  ]
+}
+
+L.geoJSON(geojson, {
+    style: function (feature) {
+        return {
+          color: '#FFFF00'
+        }
+    }
+}).addTo(mymap);
     </script>
 </body>
 </html>
